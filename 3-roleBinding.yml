@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows jane to read pods in the defatult namespace
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: kubernetes-dashboard
+subjects:
+- kind: ServiceAccount
+  name: priya #Name is case sensitive
+  namespace: kubernetes-dashboard
+roleRef:
+  kind: Role #This must be Role or ClusterRole
+  name: pod-reader #This must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
